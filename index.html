@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smart Guide: Адал азамат</title>
+<meta name="description" content="SMART GUIDE: АДАЛ АЗАМАТ — «Адал азамат» құндылықтарына арналған цифрлық гид. Қазақстан картасы: 6 өңір – 6 құндылық, 3D кітаптар, мереке порталдары, қазақша аудиогид, мұғалім кабинеті.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1a3a'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23f4c95d' stroke-width='5'/%3E%3Cpath d='M32 15v34M15 32h34' stroke='%23f4c95d' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="splash" class="splash">
+  <div class="splash-inner">
+    <div class="splash-guides"><span class="g1">🐆</span><span class="book">📖</span><span class="g2">🦅</span></div>
+    <p class="eyebrow gold">«АДАЛ АЗАМАТ» БІРТҰТАС ТӘРБИЕ БАҒДАРЛАМАСЫ</p>
+    <h1>SMART GUIDE:<br>АДАЛ АЗАМАТ</h1>
+    <p class="splash-sub">«Адал азамат» құндылықтарына арналған цифрлық гид</p>
+    <div class="row center"><button class="btn gold big" id="startBtn">▶ Саяхатты бастау</button><button class="btn ghost big open-teacher">👩‍🏫 Мұғалім</button></div>
+    <p class="splash-note">🎧 Дыбысты қосыңыз · аудиогид қазақ тілінде</p>
+    <a class="splash-qr" href="https://nygmetolla0404-oss.github.io/adalazamat/?class=ADAL10B" target="_blank" rel="noopener">
+      <img src="assets/img/qr.svg" alt="Сайтқа QR-код" width="150" height="150">
+      <span><b>📱 QR-кодты сканерле</b>Телефонмен сканерлеп, сайтқа бірден кір<i>nygmetolla0404-oss.github.io/adalazamat</i></span>
+    </a>
+  </div>
+</div>
+
+<header class="topbar">
+  <a href="#hero" class="brand"><span class="brand-mark">⭕</span><span>Smart Guide<b>Адал азамат</b></span></a>
+  <nav class="nav" id="nav">
+    <a href="#hero">Басты бет</a><a href="#map">Карта</a><a href="#books">Кітаптар</a><a href="#museum">Мұражай</a><a href="#adal">Адал азамат</a><a href="#idea">Пед. идея</a><a href="#author">Автор</a>
+  </nav>
+  <div class="top-actions">
+    <span class="pill net-chip" title="Тірі әлем">🟢 <b class="online-n">0</b></span>
+    <span class="pill" title="Ұпай">🏅 <b class="score-n">0</b></span>
+    <button class="icon-btn" id="voiceBtn" title="Аудиогид">🔊</button>
+    <button class="pill user-chip" id="userChip">👤 Кіру</button>
+    <button class="pill teacher-chip" id="teacherBtn" title="Мұғалім кабинеті">👩‍🏫 <span class="un">Мұғалім</span></button>
+    <button class="icon-btn burger" id="burger" aria-label="Мәзір">☰</button>
+  </div>
+</header>
+<div id="annBar" class="ann" hidden><span></span></div>
+
+<main>
+  <section id="hero" class="hero">
+    <div class="hero-bg"><i class="c1"></i><i class="c2"></i><i class="c3"></i></div>
+    <div class="hero-content">
+      <p class="eyebrow gold">«Сабақ аяқталған соң...» · Педагогикалық идея</p>
+      <h1>SMART GUIDE:<br><span>АДАЛ АЗАМАТ</span></h1>
+      <p class="hero-sub">«Адал азамат» құндылықтарына арналған цифрлық гид</p>
+      <p class="hero-lead" id="heroLead"></p>
+      <div class="hero-btns"><a class="btn gold big" href="#map">🗺️ Қазақстан картасы</a><a class="btn ghost big" href="#books">📚 3D кітаптар</a><a class="btn ghost big" href="#idea">💡 Пед. идея</a></div>
+      <div class="hero-stats"><div><b>6</b>өңір – 6 құндылық</div><div><b>12</b>пән</div><div><b>11</b>3D кітап</div><div><b>5</b>мереке</div><div><b>🐆 🦅</b>2 гид</div></div>
+    </div>
+  </section>
+
+  <section id="map" class="map-sec">
+    <div id="mapBox">
+      <div id="stage"><canvas id="worldCanvas"></canvas><div id="poiLabels"></div></div>
+    </div>
+    <div class="map-card"><p class="eyebrow gold">«Адал азамат» · бір үлкен әлем</p><h2>Қазақстан картасы</h2><p>6 өңір – 6 құндылық. Порталдар мен ұшып жүрген кітаптарды тап. Өңірді бас – ақпарат, порталды бас – 3D кітап.</p><p class="class-info" id="classInfo"></p></div>
+    <div class="map-modes"><button data-mode="overview" class="on">🔭 Шолу</button><button data-mode="leopard">🐆 Ақбарыс</button><button data-mode="eagle">🦅 Қыран</button></div>
+    <div class="legend" id="legend"></div>
+    <div class="map-user" id="mapUser"></div>
+    <div class="map-online"><span class="dot"></span> Қазір саяхатта: <b class="online-n">0</b></div>
+    <p class="map-hint">Тартып айналдыр · дөңгелекпен жақында · Ақбарыс/Қыранды таңда да, картаның өзімен саяхатта</p>
+  </section>
+
+  <section id="books" class="sec">
+    <div class="sec-head"><p class="eyebrow">Толықтырылған шындықтағы 3D кітаптар</p><h2>Кітап сөресі</h2><p>Кітапты аш: беттер парақталады, суреттер беттен шығады, аудиогид оқып береді. Оқылым, жазылым, айтылым – бәрі кітаптың ішінде.</p></div>
+    <div id="shelf"></div>
+  </section>
+
+  <section id="museum" class="sec alt">
+    <div class="sec-head"><p class="eyebrow">Виртуалды мұражай</p><h2>3D мұражай · 29 жәдігер</h2><p>Ақбарыспен мұражай залдарын арала: 6 зал – 6 құндылық, ортада – мереке жәдігерлері. Жәдігерге жақындасаң, аудиогид айтып береді.</p><button class="btn gold big" id="museumGo">🏛️ Виртуалды мұражайға кіру</button></div>
+    <div class="ex-grid" id="museumGrid"></div>
+  </section>
+
+  <section id="adal" class="sec">
+    <div class="sec-head"><p class="eyebrow">Бағдарлама туралы</p><h2>«Адал азамат» дегеніміз не?</h2></div>
+    <div class="adal-text"><div id="adalText"></div><button class="say" id="adalSay">🔊 Тыңдау</button></div>
+    <p class="slogan">«Әділетті Қазақстан – Адал азамат – Озық ойлы ұлт»</p>
+    <div class="values-grid" id="valuesGrid"></div>
+  </section>
+
+  <section id="idea" class="sec alt">
+    <div class="sec-head"><p class="eyebrow">Педагогикалық идеялар фестивалі · «Сабақ аяқталған соң...»</p><h2>Педагогикалық идея</h2><button class="say" id="ideaSay">🔊 Идеяны тыңдау</button></div>
+    <div id="ideaBox" class="idea"></div>
+  </section>
+
+  <section id="author" class="sec">
+    <div class="sec-head"><p class="eyebrow">Автор</p><h2>Идея авторы туралы</h2></div>
+    <div class="author" id="authorBox"></div>
+  </section>
+  <footer class="foot"><p>SMART GUIDE: АДАЛ АЗАМАТ · «Адал азамат» құндылықтарына арналған цифрлық гид · 2026</p><p><button class="btn ghost open-teacher">👩‍🏫 Мұғалім кабинеті</button></p><p class="muted">Аудиогид: нейрондық қазақ дауысы · 3D: three.js · Карта: Natural Earth</p><p class="muted small" id="photoCredits"></p></footer>
+</main>
+
+<!-- Саяхат режимі (толық экран) -->
+<div id="worldView" class="world-view">
+  <div class="w-top">
+    <button class="btn ghost" id="wBack">← Картаға</button>
+    <div class="w-title"><h2 id="wTitle"></h2><p id="wSub"></p></div>
+  </div>
+  <div class="w-right">
+    <div class="mode"><button data-mode="leopard" title="Ақбарыспен жүру">🐆 Ақбарыс</button><button data-mode="eagle" title="Қыранмен ұшу">🦅 Қыран</button></div>
+    <button class="icon-btn" id="wVoice">🔊</button>
+    <button class="btn gold" id="wBook">📖 Кітап</button>
+  </div>
+  <div class="quest-hud" id="questHud"></div>
+  <div class="w-online" id="worldOnline"></div>
+  <div class="joy" id="joy"><i></i></div>
+  <div class="fly-btns" id="flyBtns" hidden><button id="flyUp">⬆️</button><button id="flyDown">⬇️</button></div>
+  <div class="ex-card" id="exCard" hidden></div>
+  <p class="w-help">W A S D / ← ↑ → ↓ — жүру · Shift — жүгіру · жерді бас — сол жерге бару · F — Ақбарыс / Қыран · Space / Shift — биіктік · E — порталды ашу</p>
+</div>
+
+<!-- 3D кітап -->
+<div id="bookView" class="book-view">
+  <canvas id="bookCanvas"></canvas>
+  <div class="bk-top">
+    <span class="bk-title" id="bkTitle"></span>
+    <button id="bkHome" title="Мазмұны">🏠</button>
+    <button id="bkRead" title="Оқып беру">🔊 Оқу</button>
+    <button id="bkAuto" title="Өзі оқып, өзі парақтайды">🗣 Авто</button>
+    <button id="bkAR" title="Камера арқылы толықтырылған шындық">📷 AR</button>
+    <button id="bkFull" title="Толық экран">⛶</button>
+    <button id="bkClose" title="Жабу">✕</button>
+  </div>
+  <div class="bk-pager"><button id="bkPrev">◀</button><span id="bkCount"></span><button id="bkNext">▶</button></div>
+  <div class="bk-mascot"><button id="bkMascot" title="Ақбарыс оқып береді">🐆</button><div class="bk-bubble" id="bkBubble"></div></div>
+  <div class="bk-mic" id="bkMic" hidden><div class="mic rec">🎙️</div><p id="bkMicText">Тыңдап тұрмын...</p></div>
+</div>
+
+<div id="teacher" class="teacher"></div>
+<div id="modal" class="modal"></div>
+<div id="toasts"></div>
+<div id="confetti"></div>
+
+<script src="js/vendor/three.min.js"></script>
+<script src="js/vendor/mqtt.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/w1.js"></script><script src="js/w2.js"></script><script src="js/w3.js"></script><script src="js/w4.js"></script><script src="js/w5.js"></script><script src="js/w6.js"></script>
+<script src="js/holidays.js"></script>
+<script src="js/common.js"></script>
+<script src="js/audio-map.js"></script>
+<script src="js/kzgeo.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/net.js"></script>
+<script src="js/avatars.js"></script>
+<script src="js/models.js"></script>
+<script src="js/photos.js"></script>
+<script src="js/extra.js"></script>
+<script src="js/progress.js"></script>
+<script src="js/activities.js"></script>
+<script src="js/kz.js"></script>
+<script src="js/books.js"></script>
+<script src="js/book3d.js"></script>
+<script src="js/world.js"></script>
+<script src="js/teacher.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
